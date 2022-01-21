@@ -110,26 +110,42 @@
  <!-- first page end -->
  <!-- second page start  -->
  <div class="container mt-4 ">
-    <!-- <div class="row row-cols-1 row-cols-md-1 g-5 d-flex align-items-center ">
-      <div class="col ">
-        <div class="card h-100 bg-light shadow-lg border-0">
-         
-       
-        <div style="text-align:center;padding:1em 0;"> <h3><a style="text-decoration:none;" href="https://www.zeitverschiebung.net/en/country/bd">Bangladesh</a></h3> <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=medium&timezone=Asia%2FDhaka" width="100%" height="115" frameborder="0" seamless></iframe> </div>
-
-        </div>
-      </div>
-
-
-      </div> -->
     
       
             <div class="row g-5 mt-5 ">
             <div class="col-md-4 col-6">
+            <?php
+ 
+ if(isset($_POST['submited'])){
+   $email=$_POST['email'];
+   $password=$_POST['password'];
+   
+   if($email && $password){
+   $connections=mysqli_connect('localhost','root','','demo_zoom');
+   if(! $connections){
+     echo ('not connected'.mysqli_error());
+   }
+   $querys="INSERT INTO admins(email,password) VALUES ('$email','$password')";
+ $result1=mysqli_query($connections,$querys);
+ if($result1){    
+   echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+   <strong>Mr. ${email} </strong>  ,Your data has submitted successfully.
+   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+ </div>";
+ }
+ 
+}else{
+ echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+   <strong> Sorry </strong>  ,Any field cannot be blank.
+   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+ </div>";
+}
+   }
+ ?>
                     <img  src="images/create.png" 
                    data-bs-toggle="modal" data-bs-target="#exampleModal3" class="img-fluid mx-auto d-block view_img" alt="...">
                   <p class="text-center mt-2">Create</p>
-              
+
                  <!-- Modal -->
 <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -145,18 +161,18 @@
       <form class="container mb-5" action="index.php" method="post">
           <div class="mb-3">
             <label   class="form-label">Email</label>
-            <input name="" placeholder="****@gmail.com"  class="form-control" >        
+            <input name="email" placeholder="****@gmail.com"  class="form-control" >        
           </div>
           <div class="mb-3">
             <label  class="form-label">Password</label>
-            <input name="" placeholder="163863"  class="form-control" >        
+            <input name="password" placeholder="163863"  class="form-control" >        
           </div>
           
          
           
         
           
-          <button type="submit" name="" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Submit</button>
+          <button type="submit" name="submited" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Submit</button>
           <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
         </form>
      
