@@ -35,12 +35,6 @@
         </div>
       </nav>
 
-    
-
-
-  
-
-
       <div class="container-fluid">
       <table class='table text-center fw-normal'>
       <thead>
@@ -57,16 +51,18 @@
          
         </tr>
       </thead>
- 
+      
+    
+
+      <a href="truncate.php"><button action='truncate.php?rn' name="clear" class="btn btn-primary" >Clear</button></a>
+
+
+
+
       <?php
-    $connection=mysqli_connect('localhost','root','','demo_zoom');
-    
+    $connection=mysqli_connect('localhost','root','','demo_zoom');   
     $quere="SELECT * FROM allzoomdata";
-    
-     
- 
-    $adanprodan=mysqli_query($connection,$quere);
-   
+    $adanprodan=mysqli_query($connection,$quere);   
     $query="SELECT id FROM allzoomdata ORDER BY id";
     $query_run=mysqli_query($connection,$query);
     $row=mysqli_num_rows($query_run);

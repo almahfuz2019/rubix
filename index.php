@@ -24,38 +24,7 @@
  </style>
     <!-- link css  -->
     <link rel="stylesheet" href="css/style.css">
-    <?php
- 
-    if(isset($_POST['submit'])){
-      $name=$_POST['name'];
-      $roll=$_POST['roll'];
-      $reg=$_POST['reg'];
-      $technology=$_POST['technology'];
-      $semester=$_POST['semester'];
-      $shift=$_POST['shift'];
-      $session=$_POST['session'];
-      if($name && $roll && $reg && $technology && $semester && $shift && $session){
-      $connection=mysqli_connect('localhost','root','','demo_zoom');
-      if(! $connection){
-        echo ('not connected'.mysqli_error());
-      }
-      $query="INSERT INTO allzoomdata(name,roll,reg,technology,semester, shift,session) VALUES ('$name','$roll','$reg','$technology','$semester','$shift','$session')";
-    $result=mysqli_query($connection,$query);
-    if($result){    
-      echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-      <strong>Mr. ${name} </strong>  ,Your data has submitted successfully.
-      <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-    </div>";
-    }
     
-  }else{
-    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-      <strong> Sorry </strong>  ,Any field cannot be blank.
-      <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-    </div>";
-  }
-      }
-    ?>
     <title>APP</title>
   </head>
   <body  class='container-fluid'>
@@ -184,7 +153,38 @@
                   
                 </div>
                 <div  class="col-md-4 col-6">
-              
+                <?php
+ 
+ if(isset($_POST['submit'])){
+   $name=$_POST['name'];
+   $roll=$_POST['roll'];
+   $reg=$_POST['reg'];
+   $technology=$_POST['technology'];
+   $semester=$_POST['semester'];
+   $shift=$_POST['shift'];
+   $session=$_POST['session'];
+   if($name && $roll && $reg && $technology && $semester && $shift && $session){
+   $connection=mysqli_connect('localhost','root','','demo_zoom');
+   if(! $connection){
+     echo ('not connected'.mysqli_error());
+   }
+   $query="INSERT INTO allzoomdata(name,roll,reg,technology,semester, shift,session) VALUES ('$name','$roll','$reg','$technology','$semester','$shift','$session')";
+ $result=mysqli_query($connection,$query);
+ if($result){    
+   echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+   <strong>Mr. ${name} </strong>  ,Your data has submitted successfully.
+   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+ </div>";
+ }
+ 
+}else{
+ echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+   <strong> Sorry </strong>  ,Any field cannot be blank.
+   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+ </div>";
+}
+   }
+ ?>
                     <img style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal"  src="images/join.png" 
                   class="img-fluid rounded mx-auto d-block join_img" alt="...">
                   <p class="text-center mt-2">Join</p>
