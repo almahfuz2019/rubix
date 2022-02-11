@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/comment.css">
     <!-- google font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,55 +29,7 @@
     <title>APP</title>
   </head>
   <body  class='container-fluid'>
- <!-- first page start  -->
- <div class="full_first_page ">
-     <div class="container-fluid bg-light">
-         <!-- navbar start  -->
-         <nav class="navbar navbar-expand-lg navbar-light text-center">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="index.php"> <img src="images/logo.png" alt=""  width="150" class="d-inline-block align-text-top img-fluid"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.php"><i class="fas fa-home nav-link"></i> Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active nav-link" href="doc.html"><i class="fas fa-book-reader nav-link" ></i> Doc</a>
-                 
-                  </li>
-               
-
-
-                  <li class="nav-item">
-                    <a class="nav-link active" href=""><i class="fas fa-mobile-alt nav-link"></i> App</a>
-                  
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active " href="#"><i class="fas fa-envelope-open-text nav-link"></i> Contact</a>
-                  </li>
-              
-                 
-                </ul>
-                <ul class="navbar-nav text-center d-block">
-                  
-                      <li class="nav-item">
-                        <a class="nav-link active " href="index.html"><h2 class=""><i class="fas fa-user-circle nav-link "></i></h2></a>
-                      </li>
-                </ul>
-               
-              </div>
-            </div>
-          </nav>
-         <!-- navbar end -->
-         <!-- Modal -->
-
-     
-     </div>
- </div>
- <!-- first page end -->
+  <?php include 'navbar.php';?>
  <!-- second page start  -->
  <div class="container mt-4 ">
     
@@ -112,9 +65,9 @@
    }
  ?>
                     <img  src="images/create.png" 
-                   data-bs-toggle="modal" data-bs-target="#exampleModal3" class="img-fluid mx-auto d-block view_img" alt="...">
+                   data-bs-toggle="modal" data-bs-target="#exampleModal3" class="img-fluid mx-auto d-block view_img  " alt="...">
                   <p class="text-center mt-2">Create</p>
-
+<!-- btn  btn-lg disabled -->
                  <!-- Modal -->
 <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -153,44 +106,11 @@
                   
                 </div>
                 <div  class="col-md-4 col-6">
-                <?php
- 
- if(isset($_POST['submit'])){
-   $name=$_POST['name'];
-   $roll=$_POST['roll'];
-   $reg=$_POST['reg'];
-   $technology=$_POST['technology'];
-   $semester=$_POST['semester'];
-   $shift=$_POST['shift'];
-   $session=$_POST['session'];
-   if($name && $roll && $reg && $technology && $semester && $shift && $session){
-   $connection=mysqli_connect('localhost','root','','demo_zoom');
-   if(! $connection){
-     echo ('not connected'.mysqli_error());
-   }
-   $query="INSERT INTO allzoomdata(name,roll,reg,technology,semester, shift,session) VALUES ('$name','$roll','$reg','$technology','$semester','$shift','$session')";
- $result=mysqli_query($connection,$query);
- if($result){    
-   echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-   <strong>Mr. ${name} </strong>  ,Your data has submitted successfully.
-   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
- </div>";
- }
- 
-}else{
- echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-   <strong> Sorry </strong>  ,Any field cannot be blank.
-   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
- </div>";
-}
-   }
- ?>
+                
                     <img style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal"  src="images/join.png" 
                   class="img-fluid rounded mx-auto d-block join_img" alt="...">
                   <p class="text-center mt-2">Join</p>
-                  <!-- <button data-bs-toggle="modal" data-bs-target="#exampleModal"  type="button" class="btn btn-success">Success</button> -->
-                  <!-- join from start -->
-                  <!-- Button trigger modal -->
+                
 
 
 <!-- Modal -->
@@ -205,7 +125,7 @@
       <div class="modal-body">
         <h5 class="fw-bold">Join</h5>
       </div>
-      <form class="container mb-5" action="index.php" method="post">
+      <form class="container mb-5" action="dpdf.php" method="post">
           <div class="mb-3">
             <label   class="form-label">Name</label>
             <input name="name" placeholder="Abdullah Al Mahfuz"  class="form-control" >        
@@ -264,22 +184,14 @@
     
  </div>
 
+ 
  <!-- second page end -->
+ <!-- commsnt s -->
+ <?php include 'comments.php' ?>
+<!-- commsnt e -->
    <!-- footer start -->
-<!-- <div class="container-fluid " >
-  <div class="fixed-bottom text-center">
-    
-     <div class="row align-self-end  bg-light mb-1 p-3">
-     <hr class='mx-5 '>
-       <div class="col-6"> <h4><a class="navbar-brand" href="index.php"> <img src="images/logo.png" alt=""  width="150" class="d-inline-block align-text-top img-fluid"></a>@2020 comadlfkja.com</h4></div>
-       <div class="col-6">
-       <h4><i class="fas fa-phone-square me-2"></i><i class="fab fa-youtube me-2"></i></i><i class="fab fa-facebook me-2"></i></h4>
-       </div>
-     </div>
-    
-  
-  </div>
-  </div> -->
+ 
+   <?php include 'footer.php' ?>
    <!-- footer end -->
     <!-- Bootstrap js link -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

@@ -19,21 +19,7 @@
   </head>
   <body>
     <!-- navbar start -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.php"> <img class='img-fluid' src='images/logo.png'></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
-            <form action='' method='POST' class="d-flex ms-auto">
-              <input name='search' class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-primary" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-      </nav>
+    <?php include 'navbarWithSearchbar.php';?>
 
       <div class="container-fluid">
       <table class='table text-center fw-normal'>
@@ -54,7 +40,8 @@
       
     
 
-      <a href="truncate.php"><button action='truncate.php?rn' name="clear" class="btn btn-primary" >Clear</button></a>
+      <a href="truncate.php" ><button action="index.php"  name="clear" class="btn btn-primary" >Clear</button></a>
+      <a href="news.php" class='ms-2'><button action='' name="" class="btn btn-primary " >News update</button></a>
 
 
 
@@ -108,7 +95,7 @@ if($row==''){
           <th scope='row'>{$row['semester']}</th>
           <th scope='row'>{$row['shift']}</th>
           <th scope='row'>{$row['session']}</th>
-          <th scope='row'> <p class='text-center dawnload'><a href='delete.php?rn={$row['id']}'><i class='fas fa-trash  text-danger'></i></a></p></th>
+          <th scope='row'> <p class='text-center dawnload'><a href='delete_db.php?rn={$row['id']}'><i class='fas fa-trash  text-danger'></i></a></p></th>
           
         
         </tr>
